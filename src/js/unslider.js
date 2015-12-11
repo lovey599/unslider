@@ -127,6 +127,15 @@
 
 			//  We'll manually init the container
 			self.setup();
+			
+			// For IE
+			if (typeof Array.prototype.forEach != 'function') {
+				Array.prototype.forEach = function(callback){
+					for (var i = 0; i < this.length; i++){
+						callback.apply(this, [this[i], i, this]);
+					}
+				};
+			}
 
 			//  We want to keep this script as small as possible
 			//  so we'll optimise some checks
